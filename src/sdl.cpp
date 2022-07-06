@@ -24,7 +24,7 @@ void App::initialize(std::string filename)
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create renderer: %s", SDL_GetError());
         throw std::bad_alloc();
     }
-    makeGlyphs("path");
+    makeGlyphs("Imbroglio/fonts/Courier New.tff");
     buffer = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, SDL_PIXELFORMAT_BGRA32);
     if (!buffer) {
          throw std::bad_alloc();
@@ -37,15 +37,15 @@ void App::initialize(std::string filename)
     if (IMG_Init(IMG_INIT_JPG) != IMG_INIT_JPG)
         throw std::runtime_error("Texture initialization failed");
     textures[1] = IMG_Load("Imbroglio/images/wood.jpg");
-    textures[2] = IMG_Load("Imbroglio/images/metal.jpg");
+    textures[2] = IMG_Load("Imbroglio/images/metal.jpeg");
     textures[3] = IMG_Load("Imbroglio/images/curtain.jpg");
     textures[4] = IMG_Load("Imbroglio/images/stone_moss.jpg");
     textures[5] = IMG_Load("Imbroglio/images/bark.jpg");
     textures[6] = IMG_Load("Imbroglio/images/privat_parkering.jpg");
     textures[7] = IMG_Load("Imbroglio/images/grass.jpg");
-    textures[8] = IMG_Load("Imbroglio/images/lava.jpg");
+    textures[8] = IMG_Load("Imbroglio/images/lava.png");
 								        
-    SDL_Surface *skySurf = IMG_Load("Imbroglio/images/sky.jpg");
+    SDL_Surface *skySurf = IMG_Load("Imbroglio/images/sky.png");
     if (!skySurf)
         throw std::bad_alloc();
     sky = SDL_CreateTextureFromSurface(state->renderer, skySurf);
@@ -53,6 +53,6 @@ void App::initialize(std::string filename)
     SDL_FreeSurface(skySurf);
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
         throw std::bad_alloc();
-    if (!(music = Mix_LoadMUS("Imbroglio/audio/Game_of_Thrones.wav")))
+    if (!(music = Mix_LoadMUS("Imbroglio/audio/Heroes.mp3")))
         throw std::runtime_error("Could not load music");
 }
